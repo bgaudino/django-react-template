@@ -1,0 +1,6 @@
+dj-database-url
+django
+djangorestframework
+https://github.com/fusionbox/django-authtools/archive/authtools-2.0.zip
+psycopg2
+python-dotenv
