@@ -3,7 +3,7 @@ import {useMutation} from 'react-query';
 
 import queryClient from '../api/queryClient';
 import {login} from '../api/queries';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 
 export default function Login() {
   const [email, setEmail] = React.useState('');
@@ -46,9 +46,14 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="button-primary u-full-width" type="submit">Login</button>
+        <button className="button-primary u-full-width" type="submit">
+          Login
+        </button>
       </form>
       {errorMessage && <div>{errorMessage}</div>}
+      <p>
+        Need an account? <Link to="/register">Register</Link>
+      </p>
     </div>
   );
 }

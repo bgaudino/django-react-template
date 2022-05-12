@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 
 from rest_framework.views import APIView
+from rest_framework.generics import CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -30,6 +31,14 @@ class LogoutView(APIView):
         return Response({
             'message': 'Successfully logged out'
         })
+
+
+class RegisterView(CreateAPIView):
+    serializer_class = UserSerializer
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+        login(self.request, user)
 
 
 class WhoAmIView(APIView):

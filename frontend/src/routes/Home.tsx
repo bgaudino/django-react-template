@@ -1,11 +1,10 @@
 import React from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import {useWhoAmI} from '../api/queries';
 
 export default function Home() {
   const {data, isLoading, error} = useWhoAmI();
-  const navigate = React.useCallback(useNavigate(), []);
 
   if (isLoading) {
     return <div>Loading...</div>;

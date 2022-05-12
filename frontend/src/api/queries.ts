@@ -1,5 +1,4 @@
-import {useQuery, useMutation} from 'react-query';
-import queryClient from './queryClient';
+import {useQuery} from 'react-query';
 
 async function whoAmI() {
   const res = await fetch('api/users/whoami/');
@@ -35,6 +34,40 @@ export async function logout() {
     method: 'POST',
   });
   return await res.json();
+}
+
+export async function register(
+  email: string,
+  password: string,
+  confirmation: string
+) {
+  const res = await fetch('api/users/register/', {
+    headers: {
+      'X-CSRFToken': getCookie('csrftoken'),
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      email,
+      password,
+      confirmation,
+    }),
+  });
+  const data = await res.json();
+  if (res.status === 400) {
+    if (Array.isArray(data)) {
+      throw new Error(data.join('\n'));
+    } else {
+      throw new Error(
+        Object.keys(data)
+          .map((key) => {
+            return data[key];
+          })
+          .join('\n')
+      );
+    }
+  }
+  return data;
 }
 
 function getCookie(name: string) {
