@@ -24,7 +24,7 @@ export default function Login() {
   });
 
   return (
-    <div>
+    <div className="container">
       <h1>Login</h1>
       <form
         onSubmit={(e) => {
@@ -33,18 +33,20 @@ export default function Login() {
         }}
       >
         <input
+          className="u-full-width"
           type="text"
           placeholder="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
+          className="u-full-width"
           type="password"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button className="button-primary u-full-width" type="submit">Login</button>
       </form>
       {errorMessage && <div>{errorMessage}</div>}
     </div>

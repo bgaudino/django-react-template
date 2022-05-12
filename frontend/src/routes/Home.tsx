@@ -12,7 +12,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>Home</h1>
       {data.is_authenticated ? (
         <>
