@@ -1,12 +1,19 @@
 import {useQuery} from 'react-query';
 
+const headers = {
+  'X-CSRFToken': getCookie('csrftoken'),
+  'Content-Type': 'application/json',
+};
+
 async function whoAmI() {
   const res = await fetch('api/users/whoami/');
   return await res.json();
 }
 
 export function useWhoAmI() {
-  return useQuery('whoami', whoAmI);
+  return useQuery('whoami', whoAmI, {
+    staleTime: Infinity,
+  });
 }
 
 export async function login(email: string, password: string) {
@@ -68,6 +75,22 @@ export async function register(
     }
   }
   return data;
+}
+
+export async function getScratchPad(userId: number) {
+  const res = await fetch(`api/notes/${userId}/`);
+  return await res.json();
+}
+
+export async function updateScratchPad(userId: number, text: string) {
+  const res = await fetch(`api/notes/${userId}/`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({
+      text,
+    }),
+  });
+  return await res.json();
 }
 
 function getCookie(name: string) {

@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('users.urls')),
+    path('api/notes/', include('notes.urls')),
     re_path(r'.*', views.FrontendAppView.as_view()),
 ]
