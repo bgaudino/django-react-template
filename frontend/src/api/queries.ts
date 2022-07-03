@@ -19,9 +19,7 @@ export function useWhoAmI() {
 export async function login(email: string, password: string) {
   const res = await fetch('api/users/login/', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({
       email,
       password,
@@ -49,10 +47,7 @@ export async function register(
   confirmation: string
 ) {
   const res = await fetch('api/users/register/', {
-    headers: {
-      'X-CSRFToken': getCookie('csrftoken'),
-      'Content-Type': 'application/json',
-    },
+    headers,
     method: 'POST',
     body: JSON.stringify({
       email,

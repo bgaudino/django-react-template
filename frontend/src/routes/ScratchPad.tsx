@@ -9,11 +9,9 @@ export default function ScratchPad() {
   const [isUpdating, setIsUpdating] = React.useState(false);
 
   const {data: user} = useWhoAmI();
-  const {
-    data: scratchPad,
-    isLoading,
-    error,
-  } = useQuery('scratch_pad', () => getScratchPad(user.id));
+  const {data: scratchPad, isLoading} = useQuery('scratch_pad', () =>
+    getScratchPad(user.id)
+  );
 
   React.useEffect(() => setText(scratchPad?.text), [scratchPad]);
 

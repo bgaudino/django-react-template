@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {useWhoAmI} from '../api/queries';
 
 export default function Home() {
-  const {data, isLoading, error} = useWhoAmI();
+  const {data, isLoading} = useWhoAmI();
 
   if (isLoading) {
     return <div>Loading...</div>;
