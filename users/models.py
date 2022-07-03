@@ -1,5 +1,12 @@
 from authtools.models import AbstractEmailUser
 
+from notes.models import ScratchPad
+
 
 class User(AbstractEmailUser):
-    pass
+    def save(self, *args, **kwargs):
+        created = self.pk is None
+        super().save(*args, **kwargs)
+
+        if created:
+            ScratchPad.objects.create(user=self)
