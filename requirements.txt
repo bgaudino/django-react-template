@@ -4,11 +4,11 @@
 #
 #    pip-compile
 #
-asgiref==3.4.1
+# asgiref==3.4.1
     # via django
 dj-database-url==0.5.0
     # via -r requirements.in
-django==4.0.4
+# django==4.0.4
     # via
     #   -r requirements.in
     #   django-authtools
@@ -23,5 +23,5 @@ python-dotenv==0.20.0
     # via -r requirements.in
 pytz==2022.1
     # via djangorestframework
-sqlparse==0.4.2
+# sqlparse==0.4.2
     # via django
