@@ -9,6 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           # Dchjango 3.2
@@ -32,6 +33,8 @@ jobs:
             python-version: "3.10"
 
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
